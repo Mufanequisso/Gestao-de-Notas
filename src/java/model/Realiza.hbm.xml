@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 5, 2024 10:55:50 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Realiza" table="realiza" catalog="eng_software" optimistic-lock="version">
+        <composite-id name="id" class="model.RealizaId">
+            <key-property name="nrmatricula" type="int">
+                <column name="nrmatricula" />
+            </key-property>
+            <key-property name="codigoA" type="int">
+                <column name="codigoA" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="avaliacao" class="model.Avaliacao" update="false" insert="false" fetch="select">
+            <column name="codigoA" not-null="true" />
+        </many-to-one>
+        <many-to-one name="estudante" class="model.Estudante" update="false" insert="false" fetch="select">
+            <column name="nrmatricula" not-null="true" />
+        </many-to-one>
+        <property name="nota" type="java.lang.Integer">
+            <column name="nota" />
+        </property>
+    </class>
+</hibernate-mapping>

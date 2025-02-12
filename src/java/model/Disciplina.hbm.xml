@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 5, 2024 10:55:50 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Disciplina" table="disciplina" catalog="eng_software" optimistic-lock="version">
+        <id name="codD" type="int">
+            <column name="codD" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="curso" class="model.Curso" fetch="select">
+            <column name="codCurso" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" />
+        </property>
+        <property name="credito" type="java.lang.Integer">
+            <column name="credito" />
+        </property>
+        <property name="ch" type="java.lang.Integer">
+            <column name="CH" />
+        </property>
+        <set name="estudantes" table="inscrito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codD" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.Estudante">
+                <column name="nrmatricula" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
